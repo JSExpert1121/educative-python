@@ -1,3 +1,7 @@
+from math import inf
+from typing import Optional
+
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -15,7 +19,50 @@ class BST:
 
 
     def search(self, data):
-        self.__search(self.root, data)
+        return self.__search(self.root, data)
+
+
+    def is_satisfied_bst1(self):
+        output = self.__to_array(self.root)
+        return self.__sorted(output)
+
+
+    def __to_array(self, node: Node) -> list:
+
+        left_array = self.__to_array(node.left) if node.left else []
+        right_array = self.__to_array(node.right) if node.right else []
+        
+        return [*left_array, node.data, *right_array]
+
+
+    def __sorted(self, array: list) -> bool:
+        prev = array[0]
+        for item in array[1:]:
+            if item < prev:
+                return False
+
+            prev = item
+
+        return True
+
+
+    def is_satisfied_bst2(self):
+        return self.__is_limited(self.root, -inf, inf)
+
+
+    def __is_limited(self, node: Node, lower, upper) -> bool:
+        if node is None:
+            return True
+
+        if node.data < lower or node.data > upper:
+            return False
+
+        if not self.__is_limited(node.left, lower, node.data):
+            return False
+        if not self.__is_limited(node.right, node.data, upper):
+            return False
+
+        return True
 
 
     def __search(self, parent: Node, data):
@@ -39,6 +86,6 @@ class BST:
                 parent.left = Node(data)
         else:
             if parent.right:
-                self.__insert(parent.right)
+                self.__insert(parent.right, data)
             else:
                 parent.right = Node(data)
