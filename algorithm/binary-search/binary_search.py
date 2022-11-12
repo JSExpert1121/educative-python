@@ -91,3 +91,23 @@ def bs_fixed_point(data: list):
             start = middle + 1
         else:
             return mid_value
+
+
+def bs_find_peak_in_bitonic(data: list):
+    if len(data) == 0:
+        return None
+
+    start = 0
+    end = len(data) - 1
+
+    while start <= end:
+        middle = (start + end) // 2
+        if middle == end:
+            return data[middle]
+        else:
+            if data[middle] > data[middle+1]:
+                end = middle
+            else:
+                start = middle + 1
+
+    return data[start]

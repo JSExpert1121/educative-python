@@ -3,7 +3,8 @@ from binary_search import (
     binary_search_iterative,
     binary_search_recursive,
     binary_search_closest_number,
-    bs_fixed_point
+    bs_fixed_point,
+    bs_find_peak_in_bitonic
 )
 
 def run_search():
@@ -23,8 +24,16 @@ def run_fixed_point():
     data = [0, 2, 5, 8, 17]
     print(bs_fixed_point(data))
 
+def run_bitonic_peak():
+    print(bs_find_peak_in_bitonic([1, 2, 3, 4, 5, 4, 3, 2, 1]))
+    print(bs_find_peak_in_bitonic([1, 6, 5, 4, 3, 2, 1]))
+    print(bs_find_peak_in_bitonic([1, 2, 3, 4, 5]))
+    print(bs_find_peak_in_bitonic([5, 4, 3, 2, 1]))
+
+
 
 if __name__ == '__main__':
     # run_search()
     # run_closest()
-    run_fixed_point()
+    # run_fixed_point()
+    run_bitonic_peak()
