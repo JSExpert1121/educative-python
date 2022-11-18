@@ -31,7 +31,7 @@ class BST:
 
         left_array = self.__to_array(node.left) if node.left else []
         right_array = self.__to_array(node.right) if node.right else []
-        
+
         return [*left_array, node.data, *right_array]
 
 
